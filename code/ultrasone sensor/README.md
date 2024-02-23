@@ -1,7 +1,5 @@
-# Slim parkeersysteem
-Projectvoorstel 
- 
-Stel je voor: je rijdt naar de stad, je hebt een belangrijke afspraak en je bent al laat. De klok 9kt en je bent nog steeds op zoek naar een parkeerplek. Frustrerend, toch? Dit is een scenario waar veel bestuurders dagelijks mee te maken hebben, vooral in drukke stedelijke gebieden. Maar wat als er een oplossing is die je kan helpen om gemakkelijk een beschikbare parkeerplaats te vinden? Maak kennis met ons slimme parkeersysteem - een innova9eve oplossing die de stress en het gedoe van parkeren wegneemt. 
- 
-Ons slimme parkeersysteem, aangedreven door Internet of Things (IoT) technologie, is een centraal beheersysteem dat bestuurders in staat stelt om een parkeerplek te zoeken en te reserveren via hun smartphone. Het gebruikt sensoren om beschikbare parkeerplekken te detecteren en communiceert deze informa9e in real-9me naar de bestuurders in dat gebied. Dit betekent dat je nooit meer hoeJ te worstelen om een parkeerplek te vinden of meer te betalen dan nodig is. 
+# ultrasonic-sensor
 
+Hier is een voorbeeldcode voor de ultrasone sensor. Deze code is afkomstig van: https://esp32io.com/tutorials/esp32-ultrasonic-sensor
+
+Deze code is ontworpen om met een ESP32 microcontroller en een ultrasone sensor (zoals de HC-SR04) de afstand tot een object te meten. De ESP32 stuurt een ultrasonische puls uit via de TRIG-pin en ontvangt het echo-signaal via de ECHO-pin. De duur van de ontvangen echo wordt gebruikt om de afstand tot het object te berekenen, waarbij de afstand in centimeters wordt uitgedrukt en vervolgens naar de seriële monitor wordt gestuurd. Daarnaast controleert de code met behulp van de `millis()` functie of er 10 seconden zijn verstreken sinds de laatste meting, en voert indien ja, een nieuwe meting uit. Dit proces herhaalt zich continu in de `loop()` functie.
