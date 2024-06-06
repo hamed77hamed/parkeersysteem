@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>Reservatie Tijd status</title>
+    <style>
+        p {
+            text-align: center;
+            font-size: 60px;
+            margin-top: 0px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/statustijd" method="post">
+        <div>
+            Voornaam: <input type="text" name="voornaam">
+        </div>
+        <div>
+            Nummerplaat: <input type="text" name="nummerplaat">
+        </div>
+        <div>
+            <button type="submit">Verzenden</button>
+        </div>
+    </form>
+    {% if result %}
+        {% for row in result %}
+            <h1>The time element</h1>
+            <p>Uw reservatie is gestart om <time>{{ row['BeginTijd'] }}</time> uur en eindigt om <time>{{ row['EindTijd'] }}</time>.</p>
+            <p id="demo">Loading timer...</p>
+            <script>
+                // Set the date we're counting down to
+                var countDownDate = new Date("{{ row['EindTijd'] }}").getTime();
+
+                // Update the count down every 1 second
+                var x = setInterval(function() {
+                    // Get today's date and time
+                    var now = new Date().getTime();
+                    
+                    // Find the distance between now and the count down date
+                    var distance = countDownDate - now;
+                    
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                    // Output the result in an element with id="demo"
+                    document.getElementById("demo").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+                    
+                    // If the count down is over, write some text 
+                    if (distance < 0) {
+                        clearInterval(x);
+                        document.getElementById("demo").innerHTML = "EXPIRED";
+                    }
+                }, 1000);
+            </script>
+        {% endfor %}
+    {% endif %}
+    <a href="/parking"><button>Home</button></a>
+    <a href="/Reservatie-annuleren"><button>Home</button></a>
+</body>
+</html>

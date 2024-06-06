@@ -13,3 +13,5 @@ Data Ophalen: Maakt een HTTP GET verzoek naar een server om JSON data op te hale
 JSON Parsing: Gebruikt de ArduinoJson bibliotheek om de ontvangen JSON data te parsen. De JSON data bevat reserveringsinformatie die wordt gebruikt om de status van LEDs bij te werken.
 LED Status Bijwerken: Controleert de reserveringsstatussen in de JSON data en schakelt de bijbehorende LEDs in of uit op basis van de status ("Gereserveerd" of niet).
 Periodieke Metingen: Voert elke 10 seconden een meting uit, haalt de data op van de server en werkt de LED-statussen bij.
+
+ 

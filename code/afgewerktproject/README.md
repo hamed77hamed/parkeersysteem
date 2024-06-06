@@ -1,7 +1,42 @@
-# Slim parkeersysteem
-Projectvoorstel 
- 
-Stel je voor: je rijdt naar de stad, je hebt een belangrijke afspraak en je bent al laat. De klok 9kt en je bent nog steeds op zoek naar een parkeerplek. Frustrerend, toch? Dit is een scenario waar veel bestuurders dagelijks mee te maken hebben, vooral in drukke stedelijke gebieden. Maar wat als er een oplossing is die je kan helpen om gemakkelijk een beschikbare parkeerplaats te vinden? Maak kennis met ons slimme parkeersysteem - een innova9eve oplossing die de stress en het gedoe van parkeren wegneemt. 
- 
-Ons slimme parkeersysteem, aangedreven door Internet of Things (IoT) technologie, is een centraal beheersysteem dat bestuurders in staat stelt om een parkeerplek te zoeken en te reserveren via hun smartphone. Het gebruikt sensoren om beschikbare parkeerplekken te detecteren en communiceert deze informa9e in real-9me naar de bestuurders in dat gebied. Dit betekent dat je nooit meer hoeJ te worstelen om een parkeerplek te vinden of meer te betalen dan nodig is. 
+# volldige code 
+hier vindt u alle code samen 
 
+bronnen:
+https://esp32io.com/tutorials/esp32-ultrasonic-sensor 
+https://randomnerdtutorials.com/esp32-http-get-open-weather-map-thingspeak-arduino/ 
+https://arduinojson.org/
+https://flask.palletsprojects.com/en/2.0.x/
+https://flask.palletsprojects.com/en/2.0.x/quickstart/#rendering-templates
+https://flask.palletsprojects.com/en/2.0.x/api/#flask.Request
+https://flask.palletsprojects.com/en/2.0.x/api/#flask.json.jsonify
+https://flask.palletsprojects.com/en/2.0.x/api/#flask.redirect
+https://developer.mozilla.org/en-US/docs/Web/API/Response/json
+https://developer.mozilla.org/en-US/docs/Web/API/Window/alert
+https://www.w3schools.com/graphics/google_maps_basic.asp
+https://developers.google.com/maps/documentation/javascript/markers
+https://developers.google.com/earth-engine/apidocs/map-setzoom
+https://www.w3schools.com/js/js_arrays.asp
+https://www.w3schools.com/jsref/jsref_push.asp
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+https://developer.mozilla.org/en-US/docs/Web/API/Response/json
+https://developers.google.com/maps/documentation/javascript/shapes#rectangles
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator
+https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_form_submit
+https://developers.google.com/maps/documentation/javascript/infowindows
+https://developer.mozilla.org/en-US/docs/Web/API/Window/alert
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch#supplying_request_options
+https://www.w3schools.com/js/js_if_else.asp
+https://developers.google.com/maps/documentation/javascript/examples/rectangle-simple
+https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+https://developers.google.com/maps/documentation/javascript/examples/marker-remove
+https://developers.google.com/maps/documentation/javascript/examples/event-zoom
+https://developers.google.com/maps/documentation/javascript/examples/rectangle-event
+https://developers.google.com/maps/documentation/javascript/examples/marker-simple
+https://developers.google.com/maps/documentation/javascript/examples/infowindow-event
+https://www.w3schools.com/html/html_forms.asp
+https://www.w3schools.com/html/html_form_input_types.asp
+https://www.w3schools.com/tags/tag_button.asp
+https://www.w3schools.com/howto/howto_js_countdown.asp
+https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_form_method
+https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_time

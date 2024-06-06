@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Google Map</h1>
+
+
+<div id="googleMap" style="width:100%;height:400px;"></div>
+<a href="/Reservatie-annuleren"><button>Reservatie Annuleren</button></a>
+<a href="/tijd"><button>Reservatie tijdt status</button></a>
+<a href="/feedback"><button>Feedback</button></a>
+<a href="/page4"><button>Pagina 4</button></a>
+
+<script>
+function myMap() {
+    var mapProp = {
+        center: new google.maps.LatLng(51.1749, 4.36664),
+        zoom: 15,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+    var markers = [];
+    var rectangles = [];
+    var infoWindow = new google.maps.InfoWindow();
+
+    // Dynamically add markers from server-side data
+    {% for loc in locations %}
+    createMarker(new google.maps.LatLng({{ loc.lat }}, {{ loc.lng }}), map);
+    {% endfor %}
+
+    function createMarker(position, map) {
+        var marker = new google.maps.Marker({
+            position: position,
+            map: map
+        });
+        markers.push(marker);
+
+        marker.addListener('click', function() {
+            map.setZoom(18);
+            map.setCenter(marker.getPosition());
+            hideMarkers();
+            fetchParkingStatus(marker.getPosition());
+        });
+    }
+
+    function fetchParkingStatus(position) {
+        fetch('/parkingstatus')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(loc => {
+                var kleur = loc.reserveringStatus === "Gereserveerd" || loc.parkeerplaatsStatus === "Bezet" ? "#FF0000" : "#00FF00";
+                var bounds = {
+                    north: loc.north,
+                    south: loc.south,
+                    east: loc.east,
+                    west: loc.west
+                };
+                var rect = new google.maps.Rectangle({
+                    bounds: bounds,
+                    fillColor: kleur,
+                    fillOpacity: 0.35,
+                    map: map
+                });
+                rectangles.push(rect);
+                rect.addListener('click', function() {
+                    fetchInfo(loc, rect, kleur);
+                });
+            });
+        });
+    }
+
+    function fetchInfo(loc, rect, kleur) {
+        fetch('/info')
+        .then(response => response.json())
+        .then(data => {
+            var contentString = 'Loading...';
+            data.forEach(info => {
+                if (info.north === loc.north && info.east === loc.east) {
+                    contentString = `<div><strong>Straatnaam:</strong> ${info.straatnaam}<br><strong>Huisnummer:</strong> ${info.huisnummer}<br><strong>Parkeertarieven:</strong> € ${info.parkeertarieven} per uur<br><strong>Type Parking:</strong> ${info.typeParking}`;
+                    if (kleur === "#00FF00") {
+                        contentString += `<br><a href="#" onclick="openReservationForm('${info.parkeerplaatsID}'); return false;">Reserveren: klik hier</a>`;
+                    }
+                    contentString += `</div>`;
+                }
+            });
+            infoWindow.setContent(contentString);
+            infoWindow.setPosition({lat: loc.north, lng: loc.east});
+            infoWindow.open(map);
+        });
+    }
+
+    window.openReservationForm = function(parkeerplaatsID) {
+        var formContent = `<h3>Reservering</h3>
+            <form onsubmit="submitReservation(this, '${parkeerplaatsID}'); return false;">
+                <label>Naam:<input type="text" name="Naam" required></label><br>
+                <label>Auto:<input type="text" name="Auto" required></label><br>
+                <label>Nummerplaat:<input type="text" name="Nummerplaat" required></label><br>
+                <label>Email:<input type="email" name="Email" required></label><br>
+                <label>Telefoonnummer:<input type="text" name="Telefoonnummer" required></label><br>
+                <input type="submit" value="Submit">
+            </form>`;
+        infoWindow.setContent(formContent);
+        infoWindow.open(map);
+    };
+
+    window.submitReservation = function(form, parkeerplaatsID) {
+        var formData = new FormData(form);
+        formData.append('ParkeerplaatsID', parkeerplaatsID);
+        fetch('/gebruiker', {
+            method: 'POST',
+            body: formData
+        }).then(response => response.text())
+          .then(data => {
+              alert(data);
+              infoWindow.close();
+          });
+    };
+
+    function hideMarkers() {
+        markers.forEach(marker => marker.setVisible(false));
+    }
+
+    function showMarkers() {
+        markers.forEach(marker => marker.setVisible(true));
+        rectangles.forEach(rect => rect.setMap(null));
+        rectangles = [];
+    }
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+        if (map.getZoom() <= 16) {
+            showMarkers();
+            infoWindow.close();
+        }
+    });
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<key>&callback=myMap"></script>
+
+</body>
+</html>
